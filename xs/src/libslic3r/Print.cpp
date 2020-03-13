@@ -706,6 +706,8 @@ Print::export_gcode(std::string outfile, bool quiet)
     // rename the temporary file to the destination file
     // When renaming, some other application (thank you, Windows Explorer) 
     // may keep the file locked. Try to wait a bit and then rename the file again.
+    // maybe you need this:
+    outstream.close();
     for (int i = 0; std::rename(tempfile.c_str(), outfile.c_str()) != 0; ++i) {
         if (i == 4) {
             std::stringstream ss;
